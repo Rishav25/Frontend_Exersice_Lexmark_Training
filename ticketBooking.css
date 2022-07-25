@@ -1,0 +1,45 @@
+img {
+  border-radius: 50%;
+  margin-right: 2rem;
+  margin-left: 1rem;
+  margin-bottom: 0.5rem;
+}
+.btn {
+  border: none;
+  transition: box-shadow 0.5s;
+}
+.btn:hover {
+  box-shadow: 0 11px 11px rgba(33, 33, 33, 0.2);
+}
+.navbar {
+  background-color: rgb(241, 166, 128);
+  color: white;
+}
+.navbar-brand {
+  min-height: 36;
+  min-width: 36;
+}
+.navbar-toggler {
+  border: none;
+}
+.passengerListBox {
+  margin: 1rem 5rem;
+  padding: 1rem 1rem;
+  border-radius: 2%;
+  border-style: solid;
+  border-color: grey;
+  border-width: 0.1rem;
+}
+.passengerListBox2 {
+    margin: 1rem 10rem;
+    padding: 1rem 1rem;
+    border-radius: 2%;
+    border-style: solid;
+    border-color: grey;
+    border-width: 0.1rem;
+  }
+.passengerList{
+    color:rgb(242, 105, 36);
+    font-size:1.1rem;
+    column-count: 5;
+}
