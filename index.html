@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="ticketBooking.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
+    <title>Ticket Booking</title>
+  </head>
+  <body onload="loadingFunction()">
+    <!--
+        Navbar div
+    -->
+    <nav class="navbar navbar-expand-lg">
+      <div class="container-lg">
+          <a class="navbar-brand" href="#">
+              <img src="Picture1.png" alt="" width="36" height="36">
+          </a>
+          <a class="navbar-brand" href="#">IRCTC</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Book</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Contact Us</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+    </nav>
+
+      <div style="padding: 1rem 5rem; color: rgb(242, 105, 36)">
+        <div style="padding: 0rem 5rem; font-size: 2rem">
+          <p style="text-align: center; font-weight: 600">
+            <text style="float: left">Train Number</text>
+            <text>Train Name</text>
+            <text style="float: right">Date of Journey</text>
+          </p>
+        </div>
+        <div style="padding: 0rem 5rem; font-size: 1.25rem">
+          <p style="text-align: center; font-weight: 600">
+            <text style="float: left">12022</text>
+            <text>Vande Bharat Rajdhani</text>
+            <text style="float: right">17-07-2022</text>
+          </p>
+        </div>
+        <br /><br />
+        <div 
+        style="margin : 0rem 0rem 2rem 5rem"
+        >
+            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#addPassengerModal" style="background-color:rgb(241, 166, 128);color:white;border:none">
+                <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="25"
+                height="25"
+                fill="currentColor"
+                class="bi bi-plus"
+                viewBox="0 0 16 16"
+                style="color: white"
+              >
+                <path
+                  d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+                />
+              </svg>
+              Add Passenger
+            </button>
+          </div>
+        </div>
+        
+        <div id = "passengerListId">
+          <script>
+            
+          </script>
+        </div>
+        
+        
+        <div style="color:rgb(242, 105, 36);margin:0rem 0rem 0.5rem 10rem;font-size:1.2rem">
+            <label>Contact No:</label>
+            <input type="number" id="contactNumber">
+        </div>
+
+        <div id = "totalPrice">
+          <div style="margin:0rem 10rem;font-size:1.2rem;color:rgb(242, 105, 36)" id = "totalPriceChild">
+            Total Price : 
+            <script>
+              document.write(getPrice()) + "$";
+            </script>
+        </div>
+        </div>
+
+        <div style="text-align: center;margin:2rem">
+            <button
+              class="btn"
+              type="submit"
+              onclick = "bookTikcet()"
+              form="passengersForm"
+              value="Submit"
+              style="
+                padding: 1rem 2rem;
+                background-color: rgb(241, 166, 128);
+                color: white;
+              "
+            >
+              Book Ticket
+            </button>
+          </div>
+
+        <div class="modal fade" id="addPassengerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Passenger Details</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div style="padding: 1rem 2rem">
+                        <form class="row g-3 needs-validation" id="passengerForm" novalidate>
+                          <div class="row" style="margin-bottom: 1rem">
+                            <div class="col">
+                              <label for="passengerName">Name </label>
+                              <input type="text" class="form-control" id="passengerName" required>
+                            </div>
+                          </div>
+              
+                          <div class="row" style="margin-bottom: 1rem">
+                            <div class="col">
+                              <label for="passengerAge">Age </label>
+                              <input type="number" class="form-control" id="passengerAge" required>
+                            </div>
+
+                            <div class="col">
+                              <label>Gender</label>
+                              <select
+                                name="passengerGender"
+                                required="true"
+                                class="form-control"
+                                id="passengerGender"
+                              >
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Transgender">Transgender</option>
+                              </select>
+                            </div>
+                          </div>
+              
+                          <div class="row" style="margin-bottom: 1rem">
+                            <div class="col">
+                              <label>Seat Preference</label>
+                              <select
+                                name="passengerSeatPreference"
+                                required="true"
+                                id = "passengerSeatPreference"
+                                class="form-control"
+                              >
+                                <option value="Window Side">Window Side</option>
+                                <option value="No Preference">No Preference</option>
+                              </select>
+                            </div>
+                            <div class="col">
+                              <label>Meal</label>
+                              <select
+                                name="passengerMeal"
+                                id="passengerMeal"
+                                required="true"
+                                class="form-control"
+                              >
+                                <option value="Veg">Veg</option>
+                                <option value="NonVeg">Non-Veg</option>
+                                <option value="Not Applicable">Not Applicable</option>
+                              </select>
+                            </div>
+                          </div>
+    
+                          <p>
+                            <text style="padding-bottom: 2em">Price : 150$</text>
+                          </p>
+                          <div style="text-align: center">
+                            <button
+                              onclick = "addPassenger()"
+                              data-bs-dismiss="modal"
+                              class="btn"
+                              type="submit"
+                              form="passengersForm"
+                              style="
+                                padding: 1rem 2rem;
+                                background-color: rgb(241, 166, 128);
+                                color: white;
+                              "
+                            >
+                              Add Passenger
+                            </button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <footer class="text-center text-white" style="background-color: #f1f1f1;">
+            <div class="container pt-4">
+              <section class="mb-4">
+                <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button" data-mdb-ripple-color="dark">
+                  <i class="fab fa-facebook-f">
+                  </i>
+                </a>
+                <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button" data-mdb-ripple-color="dark">
+                  <i class="fab fa-twitter">
+                  </i>
+                </a>
+                <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button" data-mdb-ripple-color="dark">
+                  <i class="fas fa-envelope">
+                  </i>
+                </a>
+              </section>
+              <!-- Section: Social media -->
+            </div>
+      
+            <div class="text-center text-dark p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+              © 2020 Copyright:
+              <a class="text-dark" href="#">IRCTC</a>
+            </div>
+          </footer>
+    </div>
+    <script>
+      console.log(loadingFunction());
+    </script>
+  </body>
+</html>
